@@ -13,9 +13,9 @@
     <!-- Link to bootstrap-->
     <link rel="stylesheet" href="assets/styles/style.css">
 
-      <!-- Link to font awesome-->
+    <!-- Link to font awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -24,17 +24,27 @@
     </header>
     <div class="container">
         <div class="row">
-            <div class ="col-4" id="searchBlock">
-                <form>
-                    <label for="initial" class="font-weight-bold">Search for a city:</label>
-                    <input type="text" id="cityTextBox" name="city" style="padding-bottom: 5px;">
-                    <button id="search" class="btn btn-primary">
-                    <i class="fa fa-search"></i>
-                    </button>
-                </form>
+            <div class="col-4 bg-light" id="searchBlock">
+                <div class="row">
+                    <div class="col">
+                       
+                            <label for="initial" class="font-weight-bold">Search for a city:</label>
+                            <form>
+                            <input type="text" id="cityTextBox" name="city" style="padding-bottom: 5px;">
+                            <button id="search" class="btn btn-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div id="cityListBlock" class="row mt-3"> <!-- add class hide-->
+                    <div class="col d-flex flex-column bd-highlight mb-3">
+                        <button type="button" class="btn btn-light btn-outline-secondary rounded-0">Janani Nasssssssssss</button>
+                    </div>
+                </div>
             </div>
-            <div class ="col-8" id="displayBlock">
-                
+            <div class="col-8" id="displayBlock">
+
             </div>
         </div>
     </div>
