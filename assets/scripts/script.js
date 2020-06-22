@@ -2,7 +2,10 @@ $(function () {
    
     $("#search").on("click", function (event) {
         event.preventDefault();
-      
+        var lon =0;
+        var lat =0;
+       
+
         var cityName = $("#cityTextBox").val();
         var btn = $("<button>");
      
@@ -19,7 +22,7 @@ $(function () {
            url: currentTempqueryURL,
            method: "GET",
          }).then(function (response) {
-           console.log(response);
+          
            var currentDate = moment().format("MM/DD/YYYY");
            var h2 = $("<h2>");
           h2.text(response.name + " (" + currentDate +")");
@@ -30,10 +33,13 @@ $(function () {
           $("#humidity").text( $("#humidity").text()+" "+response.main.humidity);
           $("#windSpeed").text( $("#windSpeed").text()+" "+response.wind.speed);
 
+          lon = response.coord.lon;
+          lat = response.coord.lat;
 
-
-          //UV index needs a seperte ajax call
-        //  $("#uvIndex").text( $("#uvIndex").text()+response.main.temp);
+        
+          displayUVIndex(lon,lat);
+          
+         
 
            $("#cityDate").append(h2);
           /* response.name;
@@ -50,6 +56,23 @@ $(function () {
 
         //cityLocalStorage();
     });
+
+    function displayUVIndex(lon,lat){
+   
+      var uvIndexqueryURL =
+      "http://api.openweathermap.org/data/2.5/uvi?appid=edc2a456f6f29d66592546fe8ebdbd2e&lat="+lat+"&lon="+lon;
+     
+      $.ajax({
+        url: uvIndexqueryURL,
+        method: "GET",
+      }).then(function (response) {
+        var uvIndex = response.value;
+      
+        $("#uvIndex").text( $("#uvIndex").text()+" "+uvIndex);
+      
+      });
+     
+    }
 
     function displayWeather(){
 
