@@ -1,5 +1,12 @@
 $(function () {
 
+  // code to retrieve local storage
+  displaySearchHistory();
+
+  // code to retrieve local storage
+  displayLastSearchWeather();
+
+  //on click function for button search
   $("#search").on("click", function (event) {
     event.preventDefault();
 
@@ -13,6 +20,7 @@ $(function () {
     $("#cityListBlock").append(btn);
 
     //add code to store in local storage
+    storeSearchHistory(cityName);
 
     displayCurrentWeather(cityName);
 
@@ -28,10 +36,25 @@ $(function () {
      $(".container").append(movieDiv);*/
 
 
-    //  displayWeather();
-
-    //cityLocalStorage();
   });
+
+  function storeSearchHistory(cityName) {
+    var searchArr = [];
+    if (localStorage.getItem("searchHistory") != null || localStorage.getItem("searchHistory") != undefined) {
+      searchArr = JSON.parse(localStorage.getItem("searchHistory"));
+      if (jQuery.inArray(cityName, searchArr) === -1) {
+        searchArr.push(cityName);
+      }
+
+    } else {
+      searchArr.push(cityName);
+    }
+    localStorage.setItem("searchHistory", JSON.stringify(searchArr));
+  }
+
+  function displaySearchHistory() {
+
+  }
 
   function displayUVIndex(lon, lat) {
 
@@ -81,6 +104,9 @@ $(function () {
       displayUVIndex(lon, lat);
 
     });
+  }
+  function displayLastSearchWeather() {
+
   }
 
   function cityLocalStorage() {
