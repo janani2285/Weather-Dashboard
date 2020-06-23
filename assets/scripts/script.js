@@ -12,17 +12,25 @@ $(function () {
 
 
     var cityName = $("#cityTextBox").val();
-    var btn = $("<button>");
+   
+    if(cityName != null && cityName != ""){
+    
+      var btn = $("<button>");
 
     btn.attr("data-city", cityName).attr("type", "button");
     btn.text(cityName);
     btn.addClass("btn btn-light btn-outline-secondary rounded-0");
-    $("#cityListBlock").append(btn);
+    $("#cityListBlock").prepend(btn);
+    localStorage.setItem("lastSearch",cityName);
 
     //add code to store in local storage
     storeSearchHistory(cityName);
 
     displayCurrentWeather(cityName);
+    }else{
+      alert("Please enter a city name");
+    }
+    
 
 
 
@@ -53,6 +61,19 @@ $(function () {
   }
 
   function displaySearchHistory() {
+    var cityArr = JSON.parse(localStorage.getItem("searchHistory"));
+    console.log(cityArr);
+    if(cityArr != null || cityArr != undefined){
+      for(var i=0;i<cityArr;i++){
+         var btn = $("<button>");
+
+      btn.attr("data-city", cityArr[i]).attr("type", "button");
+      btn.text(cityArr[i]);
+      btn.addClass("btn btn-light btn-outline-secondary rounded-0");
+      $("#cityListBlock").append(btn);
+      }
+     
+    }
 
   }
 
