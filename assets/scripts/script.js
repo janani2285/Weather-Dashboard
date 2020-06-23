@@ -67,7 +67,7 @@ $(function () {
     }).then(function (response) {
       var uvIndex = response.value;
 
-      $("#uvIndex").text($("#uvIndex").text() + " " + uvIndex);
+      $("#uvIndex").text("UV Index: "+ uvIndex);
 
     });
 
@@ -90,12 +90,12 @@ $(function () {
       h2.text(response.name + " (" + currentDate + ")");
       imageUrl = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
       h2.append($("<img src=" + imageUrl + "></img>"));
-      $("#cityDate").append(h2);
+      $("#cityDate").html(h2);
 
-      $("#temp").text($("#temp").text() + " " + response.main.temp);
+      $("#temp").text("Temperature: " + response.main.temp);
       $("#temp").append("&#x2109;");
-      $("#humidity").text($("#humidity").text() + " " + response.main.humidity);
-      $("#windSpeed").text($("#windSpeed").text() + " " + response.wind.speed);
+      $("#humidity").text("Humidity: " + response.main.humidity);
+      $("#windSpeed").text("Wind Speed:" + response.wind.speed);
 
       lon = response.coord.lon;
       lat = response.coord.lat;
