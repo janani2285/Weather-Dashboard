@@ -21,7 +21,7 @@ $(function () {
     btn.text(cityName);
     btn.addClass("btn btn-light btn-outline-secondary rounded-0");
     $("#cityListBlock").prepend(btn);
-    localStorage.setItem("lastSearch",cityName);
+   
 
     //add code to store in local storage
     storeSearchHistory(cityName);
@@ -71,7 +71,7 @@ $(function () {
 
       btn.attr("data-city", cityArr[i]).attr("type", "button");
       btn.text(cityArr[i]);
-      btn.addClass("btn btn-light btn-outline-secondary rounded-0");
+      btn.addClass("btnHistory btn btn-light btn-outline-secondary rounded-0");
       $("#cityListBlock").append(btn);
       }
      
@@ -125,7 +125,7 @@ $(function () {
 
 
       displayUVIndex(lon, lat);
-
+      localStorage.setItem("lastSearch",cityName);
     });
   }
   function displayLastSearchWeather() {
