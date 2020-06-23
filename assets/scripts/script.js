@@ -62,9 +62,11 @@ $(function () {
 
   function displaySearchHistory() {
     var cityArr = JSON.parse(localStorage.getItem("searchHistory"));
-    console.log(cityArr);
+    
     if(cityArr != null || cityArr != undefined){
-      for(var i=0;i<cityArr;i++){
+     
+      for(var i=0;i<cityArr.length;i++){
+        
          var btn = $("<button>");
 
       btn.attr("data-city", cityArr[i]).attr("type", "button");
