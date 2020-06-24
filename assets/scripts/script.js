@@ -93,7 +93,7 @@ $(function () {
         var date = forecastDays[i].dt_txt;
         
         var dateEl = $("<div>").text(moment(date).format("MM/DD/YYYY"));
-        var imageUrl = "http://openweathermap.org/img/w/" + forecastDays[i].weather[0].icon + ".png";
+        var imageUrl = "https://openweathermap.org/img/w/" + forecastDays[i].weather[0].icon + ".png";
 
         var iconEl = $("<img src=" + imageUrl + "></img>");
         var tempEl = $("<div>").text("Temp: " + forecastDays[i].main.temp + " °F");
