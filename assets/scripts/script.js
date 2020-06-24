@@ -74,13 +74,13 @@ $(function () {
       url: queryURL,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
+     
       var forecastDays = [];
-      forecastDays.push(response.list[0]);
-      forecastDays.push(response.list[8]);
-      forecastDays.push(response.list[16]);
-      forecastDays.push(response.list[24]);
-      forecastDays.push(response.list[32]);
+      forecastDays.push(response.list[7]);
+      forecastDays.push(response.list[15]);
+      forecastDays.push(response.list[23]);
+      forecastDays.push(response.list[31]);
+      forecastDays.push(response.list[39]);
 
       $("#forecast").html("");
 
@@ -89,9 +89,9 @@ $(function () {
 
         var rowDiv = $("<div>").addClass("row p-2 bd-highlight");
 
-        //  var forecastContainer = $("<div>").addClass("forecast-day");
+       
         var date = forecastDays[i].dt_txt;
-        // alert( moment(date).format("YYYY-MM-DD"));
+        
         var dateEl = $("<div>").text(moment(date).format("MM/DD/YYYY"));
         var imageUrl = "http://openweathermap.org/img/w/" + forecastDays[i].weather[0].icon + ".png";
 
@@ -149,8 +149,9 @@ $(function () {
       url: uvIndexqueryURL,
       method: "GET",
     }).then(function (response) {
+      console.log(response);
       var uvIndex = response.value;
-
+      
       $("#uvIndex").text("UV Index: " + uvIndex);
 
     });
