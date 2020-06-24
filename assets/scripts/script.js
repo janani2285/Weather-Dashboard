@@ -143,7 +143,7 @@ $(function () {
   function displayUVIndex(lon, lat) {
 
     var uvIndexqueryURL =
-      "api.openweathermap.org/data/2.5/uvi?appid=edc2a456f6f29d66592546fe8ebdbd2e&lat=" + lat + "&lon=" + lon;
+      "https://api.openweathermap.org/data/2.5/uvi?appid=edc2a456f6f29d66592546fe8ebdbd2e&lat=" + lat + "&lon=" + lon;
 
     $.ajax({
       url: uvIndexqueryURL,
@@ -191,7 +191,7 @@ $(function () {
       var currentDate = moment().format("MM/DD/YYYY");
       var h2 = $("<h2>");
       h2.text(response.name + " (" + currentDate + ")");
-      imageUrl = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+      imageUrl = "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
       h2.append($("<img src=" + imageUrl + "></img>"));
       $("#cityDate").html(h2);
 
