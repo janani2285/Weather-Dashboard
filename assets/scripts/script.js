@@ -120,6 +120,7 @@ $(function () {
 
   function displaySearchHistoryLS() {
     var cityArr = JSON.parse(localStorage.getItem("searchHistory"));
+    var lastSearchCity = localStorage.getItem("lastSearch");
 
     if (cityArr != null || cityArr != undefined) {
 
@@ -134,6 +135,11 @@ $(function () {
         $("#cityListBlock").append(btn);
       }
 
+    }
+
+    if(lastSearchCity !=  null || lastSearchCity != undefined){
+      displayCurrentWeather(lastSearchCity);
+      display5DayForecast(lastSearchCity);
     }
 
   }
