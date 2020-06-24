@@ -1,10 +1,11 @@
 $(function () {
 
   // code to retrieve local storage
-  displaySearchHistory();
+  displaySearchHistoryLS();
 
   // code to retrieve local storage
   displayLastSearchWeather();
+
 
   //on click function for button search
   $("#search").on("click", function (event) {
@@ -12,39 +13,29 @@ $(function () {
 
 
     var cityName = $("#cityTextBox").val();
-   
-    if(cityName != null && cityName != ""){
-    
+
+    if (cityName != null && cityName != "") {
+
       var btn = $("<button>");
 
-    btn.attr("data-city", cityName).attr("type", "button");
-    btn.text(cityName);
-    btn.addClass("btn btn-light btn-outline-secondary rounded-0");
-    $("#cityListBlock").prepend(btn);
-   
+      btn.attr("data-city", cityName).attr("type", "button");
+      btn.text(cityName);
+      btn.addClass("btn btn-light btn-outline-secondary rounded-0 city");
+      $("#cityListBlock").prepend(btn);
 
-    //add code to store in local storage
-    storeSearchHistory(cityName);
 
-    displayCurrentWeather(cityName);
-    }else{
+      //add code to store in local storage
+      storeSearchHistory(cityName);
+
+      displayCurrentWeather(cityName);
+    } else {
       alert("Please enter a city name");
     }
-    
-
-
-
-    /* response.name;
-     response.weather.icon;
-    response.main.temp;
-    response.main.humidity;
-    response.wind.speed;
-     var movieDiv = $("<div>").attr("id","movie-view");
-     movieDiv.text(JSON.stringify(response, null, 4));
-     $(".container").append(movieDiv);*/
-
 
   });
+
+
+
 
   function storeSearchHistory(cityName) {
     var searchArr = [];
@@ -60,21 +51,21 @@ $(function () {
     localStorage.setItem("searchHistory", JSON.stringify(searchArr));
   }
 
-  function displaySearchHistory() {
+  function displaySearchHistoryLS() {
     var cityArr = JSON.parse(localStorage.getItem("searchHistory"));
-    
-    if(cityArr != null || cityArr != undefined){
-     
-      for(var i=0;i<cityArr.length;i++){
-        
-         var btn = $("<button>");
 
-      btn.attr("data-city", cityArr[i]).attr("type", "button");
-      btn.text(cityArr[i]);
-      btn.addClass("btnHistory btn btn-light btn-outline-secondary rounded-0");
-      $("#cityListBlock").append(btn);
+    if (cityArr != null || cityArr != undefined) {
+
+      for (var i = 0; i < cityArr.length; i++) {
+
+        var btn = $("<button>");
+
+        btn.attr("data-city", cityArr[i]).attr("type", "button");
+        btn.text(cityArr[i]);
+        btn.addClass("btn btn-light btn-outline-secondary rounded-0 city");
+        $("#cityListBlock").append(btn);
       }
-     
+
     }
 
   }
@@ -90,7 +81,7 @@ $(function () {
     }).then(function (response) {
       var uvIndex = response.value;
 
-      $("#uvIndex").text("UV Index: "+ uvIndex);
+      $("#uvIndex").text("UV Index: " + uvIndex);
 
     });
 
@@ -125,9 +116,10 @@ $(function () {
 
 
       displayUVIndex(lon, lat);
-      localStorage.setItem("lastSearch",cityName);
+      localStorage.setItem("lastSearch", cityName);
     });
   }
+
   function displayLastSearchWeather() {
 
   }
