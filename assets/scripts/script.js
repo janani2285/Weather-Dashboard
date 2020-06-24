@@ -164,12 +164,9 @@ $(function () {
       }else if(6<= uvIndex && uvIndex <8){
         
         $("#uvIndex").attr('style',  'background-color:orange');
-      }else if(8<= uvIndex && uvIndex <11){
+      }else if(uvIndex >=8){
         
         $("#uvIndex").attr('style',  'background-color:red');
-      }else if(uvIndex >=11){
-       
-        $("#uvIndex").attr('style',  'background-color:lightpurple');
       }
      
 
