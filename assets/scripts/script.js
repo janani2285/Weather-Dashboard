@@ -31,10 +31,14 @@ $(function () {
         storeSearchHistory(cityName);
 
         displayCurrentWeather(cityName);
+
+        display5DayForecast(cityName);
       } else {
         storeSearchHistory(cityName);
 
         displayCurrentWeather(cityName);
+
+        display5DayForecast(cityName);
       }
 
     } else {
@@ -50,10 +54,56 @@ $(function () {
     // var cityName = $(this).children("button").attr("data-city");
    
     displayCurrentWeather(cityName);
+    display5DayForecast(cityName);
   });
 
 
+  function display5DayForecast(cityName){
+    
+    var APIKey = "edc2a456f6f29d66592546fe8ebdbd2e&lat";
 
+    // Here we are building the URL we need to query the database
+    var queryURL =
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
+      cityName +
+      "&appid=" +
+      APIKey +
+      "&units=imperial";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+      var forecastDays = [];
+      forecastDays.push(response.list[0]);
+      forecastDays.push(response.list[8]);
+      forecastDays.push(response.list[16]);
+      forecastDays.push(response.list[24]);
+      forecastDays.push(response.list[32]);
+
+      $("#forecast").html("");
+
+      for (var i = 0; i < forecastDays.length; i += 1) {
+        var colDiv = $("<div>").addClass("col border border-primary rounded bg-primary text-white mr-2");
+
+        var rowDiv = $("<div>").addClass("row p-2 bd-highlight");
+
+      //  var forecastContainer = $("<div>").addClass("forecast-day");
+      var date = forecastDays[i].dt_txt;
+    // alert( moment(date).format("YYYY-MM-DD"));
+       var dateEl = $("<div>").text(moment(date).format("YYYY-MM-DD"));
+        var imageUrl = "http://openweathermap.org/img/w/" + forecastDays[i].weather[0].icon+ ".png";
+       
+        var iconEl = $("<img src=" + imageUrl + "></img>");
+        var tempEl = $("<div>").text("Temp: " + forecastDays[i].main.temp + " °F");
+        var humidityEl = $("<div>").text("Humidity: " + forecastDays[i].main.humidity + "%");
+        rowDiv.append(dateEl, iconEl, tempEl, humidityEl);
+        colDiv.append(rowDiv);
+        $("#forecast").append(colDiv);
+      }
+    });
+  }
   function storeSearchHistory(cityName) {
     var searchArr = [];
     if (localStorage.getItem("searchHistory") != null || localStorage.getItem("searchHistory") != undefined) {
