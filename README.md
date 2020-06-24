@@ -3,13 +3,14 @@
 
 ## Description 
 
-This repository consists of code that creates a planner for a day's working hours (9am-5pm).
+This repository consists of code that creates a weather dashboard.
 
-The project uses an HTML page for user interface, bootstrap and css for styling the HTML. The application uses jQuery to implement the logic. "moment.js" is used for manupulating date and time values. Local storage is used for data persistance.
+The project uses an HTML page for user interface, bootstrap for styling the HTML. The application uses jQuery to implement the logic. "moment.js" is used for manupulating date and time values. Local storage is used for data persistance. AJAX calls is made to connect to third-party API
 
-When user open the planner, current date is displayed with time blocks for each working hour, starting from 9am till 5pm. Each time block is color coded. The current time block is red in color, all the past time blocks are grey and all future time blocks are green.
+When the user enters a city name and press enter, the current weather for the city and 5-day forecast for the city is displayed. GThe city is added to search list.
 
-When user clicks on a time block, he is allowed to enter text. He can save his activity for the hour by clicking in the save button next to the time block. The value is stored in local storage and is displayed every time planner is loaded.
+When the user loads the page, his last seen city's weather details are displayed with a list of cities from the search history.
+
 
 Git is used for version controlling and for periodic commits to Gitlab.
 
@@ -18,4 +19,8 @@ https://janani2285.github.io/Weather-Dashboard/
 
 
 ## Screenshots of the application
+<img src="assets/images/1.png">
 
+<img src="assets/images/2.png">
+
+<img src="assets/images/3.png">

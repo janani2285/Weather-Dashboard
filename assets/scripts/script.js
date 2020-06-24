@@ -1,13 +1,13 @@
 $(function () {
 
-  // code to retrieve local storage
+  // code to retrieve local storage city list
   displaySearchHistoryLS();
 
-  // code to retrieve local storage
+  // code to retrieve local storage last searched city weather condition
   displayLastSearchWeather();
 
 
-  //on click function for button search
+  //on click function for  search button
   $("#search").on("click", function (event) {
     event.preventDefault();
 
@@ -15,6 +15,7 @@ $(function () {
     var cityName = $("#cityTextBox").val();
 
     if (cityName != null && cityName != "") {
+      $("#displayBlock").removeClass("hide");
 
       var searchArr = JSON.parse(localStorage.getItem("searchHistory"));
       if (jQuery.inArray(cityName, searchArr) === -1) {
@@ -47,19 +48,19 @@ $(function () {
 
   });
 
-
+//on click for city list displayed
   $(".city").on("click", function () {
-   
+
     var cityName = $(this).attr("data-city");
     // var cityName = $(this).children("button").attr("data-city");
-   
+
     displayCurrentWeather(cityName);
     display5DayForecast(cityName);
   });
 
-
-  function display5DayForecast(cityName){
-    
+//function for 5 day forcast
+  function display5DayForecast(cityName) {
+    $("#displayBlock").removeClass("hide");
     var APIKey = "edc2a456f6f29d66592546fe8ebdbd2e&lat";
 
     // Here we are building the URL we need to query the database
@@ -89,12 +90,12 @@ $(function () {
 
         var rowDiv = $("<div>").addClass("row p-2 bd-highlight");
 
-      //  var forecastContainer = $("<div>").addClass("forecast-day");
-      var date = forecastDays[i].dt_txt;
-    // alert( moment(date).format("YYYY-MM-DD"));
-       var dateEl = $("<div>").text(moment(date).format("YYYY-MM-DD"));
-        var imageUrl = "http://openweathermap.org/img/w/" + forecastDays[i].weather[0].icon+ ".png";
-       
+        //  var forecastContainer = $("<div>").addClass("forecast-day");
+        var date = forecastDays[i].dt_txt;
+        // alert( moment(date).format("YYYY-MM-DD"));
+        var dateEl = $("<div>").text(moment(date).format("YYYY-MM-DD"));
+        var imageUrl = "http://openweathermap.org/img/w/" + forecastDays[i].weather[0].icon + ".png";
+
         var iconEl = $("<img src=" + imageUrl + "></img>");
         var tempEl = $("<div>").text("Temp: " + forecastDays[i].main.temp + " °F");
         var humidityEl = $("<div>").text("Humidity: " + forecastDays[i].main.humidity + "%");
@@ -104,6 +105,8 @@ $(function () {
       }
     });
   }
+
+  //Function to store search history
   function storeSearchHistory(cityName) {
     var searchArr = [];
     if (localStorage.getItem("searchHistory") != null || localStorage.getItem("searchHistory") != undefined) {
@@ -118,11 +121,11 @@ $(function () {
     localStorage.setItem("searchHistory", JSON.stringify(searchArr));
   }
 
+
+// Function to display search history
   function displaySearchHistoryLS() {
     var cityArr = JSON.parse(localStorage.getItem("searchHistory"));
-    var lastSearchCity = localStorage.getItem("lastSearch");
-
-    if (cityArr != null || cityArr != undefined) {
+     if (cityArr != null || cityArr != undefined) {
 
       for (var i = 0; i < cityArr.length; i++) {
 
@@ -134,16 +137,10 @@ $(function () {
         btn.addClass("btn btn-light btn-outline-secondary rounded-0 city");
         $("#cityListBlock").append(btn);
       }
-
     }
-
-    if(lastSearchCity !=  null || lastSearchCity != undefined){
-      displayCurrentWeather(lastSearchCity);
-      display5DayForecast(lastSearchCity);
-    }
-
   }
 
+  //Function to display UV index
   function displayUVIndex(lon, lat) {
 
     var uvIndexqueryURL =
@@ -161,7 +158,9 @@ $(function () {
 
   }
 
+  //Function to display current weather
   function displayCurrentWeather(cityName) {
+    $("#displayBlock").removeClass("hide");
     var lon = 0;
     var lat = 0;
 
@@ -194,11 +193,13 @@ $(function () {
     });
   }
 
+  //Function to display last search
   function displayLastSearchWeather() {
-
-  }
-
-  function cityLocalStorage() {
-
+ //   $("#displayBlock").removeClass("hide");
+    var lastSearchCity = localStorage.getItem("lastSearch");
+    if (lastSearchCity != null || lastSearchCity != undefined) {
+      displayCurrentWeather(lastSearchCity);
+      display5DayForecast(lastSearchCity);
+    }
   }
 });
