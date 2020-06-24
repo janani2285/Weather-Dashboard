@@ -34,6 +34,10 @@ $(function () {
 
   });
 
+  $(".city").on("click", function () {
+    var cityName = $(this).attr("data-city");
+    displayCurrentWeather(cityName);
+  });
 
 
 
