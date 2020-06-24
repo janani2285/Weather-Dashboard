@@ -149,10 +149,29 @@ $(function () {
       url: uvIndexqueryURL,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
+    
       var uvIndex = response.value;
       
+     
       $("#uvIndex").text("UV Index: " + uvIndex);
+    
+      if(0< uvIndex && uvIndex <3){
+       
+        $("#uvIndex").attr('style',  'background-color:green');
+      }else if(3<= uvIndex && uvIndex <6){
+        
+        $("#uvIndex").attr('style',  'background-color:yellow');
+      }else if(6<= uvIndex && uvIndex <8){
+        
+        $("#uvIndex").attr('style',  'background-color:orange');
+      }else if(8<= uvIndex && uvIndex <11){
+        
+        $("#uvIndex").attr('style',  'background-color:red');
+      }else if(uvIndex >=11){
+       
+        $("#uvIndex").attr('style',  'background-color:lightpurple');
+      }
+     
 
     });
 
