@@ -8,7 +8,7 @@ $(function () {
 
 
   //on click function for  search button
-  $("#search").on("click", function (event) {
+  $("#searchForm").on("submit", function (event) {
     event.preventDefault();
 
 
@@ -48,15 +48,23 @@ $(function () {
 
   });
 
-//on click for city list displayed
-  $(".city").on("click", function () {
-
+  $("#cityListBlock").on("click", ".city", function(){
     var cityName = $(this).attr("data-city");
     // var cityName = $(this).children("button").attr("data-city");
 
     displayCurrentWeather(cityName);
     display5DayForecast(cityName);
   });
+
+//on click for city list displayed
+ /* $(".city").on("click", function () {
+
+    var cityName = $(this).attr("data-city");
+    // var cityName = $(this).children("button").attr("data-city");
+
+    displayCurrentWeather(cityName);
+    display5DayForecast(cityName);
+  });*/
 
 //function for 5 day forcast
   function display5DayForecast(cityName) {
