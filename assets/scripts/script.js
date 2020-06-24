@@ -16,25 +16,36 @@ $(function () {
 
     if (cityName != null && cityName != "") {
 
-      var btn = $("<button>");
+      var searchArr = JSON.parse(localStorage.getItem("searchHistory"));
+      if (jQuery.inArray(cityName, searchArr) === -1) {
+        var btn = $("<button>");
 
-      btn.attr("data-city", cityName).attr("type", "button");
-      btn.text(cityName);
-      btn.addClass("btn btn-light btn-outline-secondary rounded-0 city");
-      $("#cityListBlock").prepend(btn);
+        btn.attr("data-city", cityName).attr("type", "button");
+        // btn.attr("data-city", cityName);
+        btn.text(cityName);
+        btn.addClass("btn btn-light btn-outline-secondary rounded-0 city");
+        $("#cityListBlock").prepend(btn);
 
 
-      //add code to store in local storage
-      storeSearchHistory(cityName);
+        //add code to store in local storage
+        storeSearchHistory(cityName);
 
-      displayCurrentWeather(cityName);
+        displayCurrentWeather(cityName);
+      }else{
+        storeSearchHistory(cityName);
+
+        displayCurrentWeather(cityName);
+      }
+
     } else {
       alert("Please enter a city name");
     }
 
   });
 
+
   $(".city").on("click", function () {
+
     var cityName = $(this).attr("data-city");
     displayCurrentWeather(cityName);
   });
@@ -65,6 +76,7 @@ $(function () {
         var btn = $("<button>");
 
         btn.attr("data-city", cityArr[i]).attr("type", "button");
+        //btn.attr("data-city", cityArr[i]);
         btn.text(cityArr[i]);
         btn.addClass("btn btn-light btn-outline-secondary rounded-0 city");
         $("#cityListBlock").append(btn);
