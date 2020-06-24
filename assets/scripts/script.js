@@ -48,6 +48,7 @@ $(function () {
 
   });
 
+  //on click for city list displayed
   $("#cityListBlock").on("click", ".city", function(){
     var cityName = $(this).attr("data-city");
     // var cityName = $(this).children("button").attr("data-city");
@@ -55,16 +56,6 @@ $(function () {
     displayCurrentWeather(cityName);
     display5DayForecast(cityName);
   });
-
-//on click for city list displayed
- /* $(".city").on("click", function () {
-
-    var cityName = $(this).attr("data-city");
-    // var cityName = $(this).children("button").attr("data-city");
-
-    displayCurrentWeather(cityName);
-    display5DayForecast(cityName);
-  });*/
 
 //function for 5 day forcast
   function display5DayForecast(cityName) {
@@ -101,7 +92,7 @@ $(function () {
         //  var forecastContainer = $("<div>").addClass("forecast-day");
         var date = forecastDays[i].dt_txt;
         // alert( moment(date).format("YYYY-MM-DD"));
-        var dateEl = $("<div>").text(moment(date).format("YYYY-MM-DD"));
+        var dateEl = $("<div>").text(moment(date).format("MM/DD/YYYY"));
         var imageUrl = "http://openweathermap.org/img/w/" + forecastDays[i].weather[0].icon + ".png";
 
         var iconEl = $("<img src=" + imageUrl + "></img>");
