@@ -143,7 +143,7 @@ $(function () {
   function displayUVIndex(lon, lat) {
 
     var uvIndexqueryURL =
-      "https://api.openweathermap.org/data/2.5/uvi?appid=edc2a456f6f29d66592546fe8ebdbd2e&lat=" + lat + "&lon=" + lon;
+      "api.openweathermap.org/data/2.5/uvi?appid=edc2a456f6f29d66592546fe8ebdbd2e&lat=" + lat + "&lon=" + lon;
 
     $.ajax({
       url: uvIndexqueryURL,
