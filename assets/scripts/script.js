@@ -31,7 +31,7 @@ $(function () {
         storeSearchHistory(cityName);
 
         displayCurrentWeather(cityName);
-      }else{
+      } else {
         storeSearchHistory(cityName);
 
         displayCurrentWeather(cityName);
@@ -45,8 +45,10 @@ $(function () {
 
 
   $(".city").on("click", function () {
-
+   
     var cityName = $(this).attr("data-city");
+    // var cityName = $(this).children("button").attr("data-city");
+   
     displayCurrentWeather(cityName);
   });
 
@@ -124,8 +126,8 @@ $(function () {
 
       $("#temp").text("Temperature: " + response.main.temp);
       $("#temp").append("&#x2109;");
-      $("#humidity").text("Humidity: " + response.main.humidity);
-      $("#windSpeed").text("Wind Speed:" + response.wind.speed);
+      $("#humidity").text("Humidity: " + response.main.humidity + "%");
+      $("#windSpeed").text("Wind Speed:" + response.wind.speed + " MPH");
 
       lon = response.coord.lon;
       lat = response.coord.lat;
